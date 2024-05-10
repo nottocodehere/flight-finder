@@ -126,4 +126,3 @@ class NotificationRelay:
                             msg=email_body.as_string())
         print("Email sent!")
         connection.close()
-
