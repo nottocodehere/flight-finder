@@ -81,7 +81,7 @@ class DataManager:
                 record["lowestPrice"] = LOWEST_PRICE
                 print(f"Recording standard price {record['lowestPrice']} for ticket fare")
 
-            if len(fs.search_results["destination"][record["iataCode"]]) > 1 and isinstance(fs.search_results["destination"][record["iataCode"]][0]["price"], (int,float)) \
+            if len(fs.search_results["destination"][record["iataCode"]]) > 1 and isinstance(fs.search_results["destination"][record["iataCode"]][0]["price"], (int, float)) \
                     and fs.search_results["destination"][record["iataCode"]][0]["price"] < record["lowestPrice"]:
                 record["lowestPrice"] = fs.search_results["destination"][record["iataCode"]][0]["price"]
                 print(f"Lower price found, changing to {record['lowestPrice']}")
@@ -113,7 +113,7 @@ class DataManager:
     def upload_data(self, json_to_upload, line_number):
         """Uploads fresh results to G-sheet"""
         # print(f"TO UPLOAD {json_to_upload}")
-        send = requests.put(url=f"https://api.sheety.co/7c68a8cf840046569cd779e8b0a19dd0/flightDeals/prices/{line_number}",
+        send = requests.put(url=f"{os.getenv('SHEETY_ENDPOINT')}/{line_number}",
                             json=json_to_upload,
                             headers={"Authorization": f"Bearer {os.getenv('SHEETY_AUTH')}",
                                      "Content-Type": "application/json"})

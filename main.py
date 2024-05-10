@@ -1,9 +1,6 @@
 from data_manager import DataManager
-from flight_search import FlightSearcher
-# from notification_manager import NotificationRelay
 
 dm = DataManager()  # launches everything
-
 
 # To run the searcher - ensure you have your .env file with filled up keys, it is needed for "python anywhere" service
 # moreover. it is a good thing not to leave traces and be secure
